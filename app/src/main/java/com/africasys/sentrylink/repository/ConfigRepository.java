@@ -19,7 +19,7 @@ import java.util.Set;
 public class ConfigRepository {
 
     private static final String TAG = "SL-ConfigRepository";
-    private static final String PREFS_NAME = "sentry_link_secure_prefs";
+    private static final String PREFS_NAME = "smssync_secure_prefs";
 
     // Clés de configuration
     public static final String KEY_CONTROL_TOWER_NUMBERS = "control_tower_numbers";

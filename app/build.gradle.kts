@@ -7,7 +7,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.africasys.sentrylink"
+        applicationId = "com.africasys.sentrylink.smssync"
         minSdk = 30
         targetSdk = 36
         versionCode = 1

@@ -50,7 +50,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(
                             context.getApplicationContext(),
                             AppDatabase.class,
-                            "sentry_link_database"
+                            "smssync_database"
                     )
                     .addMigrations(MIGRATION_5_6)
                     .fallbackToDestructiveMigration()
