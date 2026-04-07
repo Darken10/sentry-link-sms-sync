@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sentry Link SMS Sync</string>
+    <string name="app_name">SL SMS Sync</string>
 
     <!-- Home -->
     <string name="home_title">SMS SYNC</string>
