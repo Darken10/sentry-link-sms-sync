@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">SentryLink</string>
+
+    <!-- Home -->
+    <string name="home_title">SENTRY LINK</string>
+    <string name="home_subtitle">Communication Sécurisée</string>
+    <string name="menu_messaging">Messagerie</string>
+    <string name="menu_location">Localisation</string>
+    <string name="menu_sos">SOS</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="menu_messaging_desc">Messages chiffrés</string>
+    <string name="menu_location_desc">Position GPS / GSM</string>
+    <string name="menu_sos_desc">Alerte d\'urgence</string>
+    <string name="menu_settings_desc">Configuration</string>
+
+    <!-- Contacts / Conversations -->
+    <string name="contacts_title">Conversations</string>
+    <string name="menu_contacts">Contacts</string>
+    <string name="menu_contacts_desc">Conversations chiffrées</string>
+    <string name="contacts_encrypted_info">🔒 Seuls les messages chiffrés Sentry Link sont affichés</string>
+    <string name="conv_encrypted_preview">🔒 Message chiffré </string>
+    <string name="contacts_empty_title">Aucune conversation</string>
+    <string name="fab_new_conversation">Nouvelle conversation</string>
+
+    <!-- Nouvelle conversation -->
+    <string name="new_conversation_title">Nouvelle conversation</string>
+    <string name="new_conversation_search_hint">Rechercher par nom, identifiant ou numéro…</string>
+    <string name="new_conversation_empty_title">Aucun contact trouvé</string>
+    <string name="new_conversation_empty_desc">Aucun contact avec un numéro de téléphone enregistré.</string>
+    <string name="add_external_contact_title">Ajouter un numéro</string>
+    <string name="add_external_contact_desc">Saisissez un numéro de téléphone qui n\'existe pas dans vos contacts pour démarrer une conversation.</string>
+    <string name="contacts_empty_desc">Aucun message Sentry Link recu pour l\'instant.</string>
+
+    <!-- Messaging -->
+    <string name="messaging_title">Messagerie Sécurisée</string>
+    <string name="hint_phone_number">Numéro de téléphone</string>
+    <string name="hint_message">Message chiffré…</string>
+    <string name="btn_send">Envoyer</string>
+    <string name="btn_refresh">Actualiser</string>
+    <string name="msg_sent">Message envoyé via %1$s</string>
+    <string name="msg_error">Erreur: %1$s</string>
+    <string name="msg_empty_phone">Veuillez entrer un numéro</string>
+    <string name="msg_empty_message">Veuillez entrer un message</string>
+    <string name="msg_encrypted_badge">🔒 Chiffré</string>
+
+    <!-- Location -->
+    <string name="location_title">Localisation</string>
+    <string name="btn_get_location">Obtenir la position</string>
+    <string name="btn_send_location">Envoyer la position</string>
+    <string name="location_gps">Position GPS obtenue</string>
+    <string name="location_gsm">Position GSM (relais radio)</string>
+    <string name="location_none">Position non disponible</string>
+    <string name="location_accuracy">Précision : %1$.1f m</string>
+    <string name="location_source">Source : %1$s</string>
+    <string name="location_searching">Recherche de position…</string>
+    <string name="loc_periodic_every">Toutes les %1$d min</string>
+    <string name="loc_auto_interval_label">Intervalle d\'envoi (minutes)</string>
+
+    <!-- SOS -->
+    <string name="sos_title">ALERTE SOS</string>
+    <string name="sos_button_text">SOS</string>
+    <string name="sos_confirm_title">Confirmer l\'alerte SOS</string>
+    <string name="sos_confirm_message">Envoyer une alerte d\'urgence avec votre position à la tour de contrôle ?</string>
+    <string name="sos_sending">Envoi de l\'alerte SOS…</string>
+    <string name="sos_sent">Alerte SOS envoyée via %1$s</string>
+    <string name="sos_failed">Échec de l\'envoi SOS: %1$s</string>
+    <string name="sos_silent_mode">Mode SOS silencieux</string>
+    <string name="sos_silent_active">Mode silencieux actif - Envoi périodique</string>
+    <string name="btn_confirm">Confirmer</string>
+    <string name="btn_cancel">Annuler</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_control_tower">Numéros Tour de Contrôle</string>
+    <string name="settings_api_url">URL du serveur API</string>
+    <string name="settings_callsign">Indicatif de l\'appareil</string>
+    <string name="settings_location_interval">Intervalle de localisation (sec)</string>
+    <string name="settings_signing_key">Clé de signature</string>
+    <string name="settings_silent_sos">Mode SOS silencieux</string>
+    <string name="settings_save">Sauvegarder</string>
+    <string name="settings_saved">Paramètres sauvegardés</string>
+    <string name="settings_add_number">Ajouter un numéro</string>
+    <string name="hint_tower_number">Numéro tour de contrôle</string>
+
+    <!-- General -->
+    <string name="status_connected">Connecté</string>
+    <string name="status_disconnected">Hors ligne</string>
+    <string name="encryption_active">Chiffrement actif</string>
+    <string name="splash_copyright">Africasys &#169; 2026</string>
+</resources>
+

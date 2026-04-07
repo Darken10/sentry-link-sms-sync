@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@android:color/white">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Service de Gestion SMS"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="12dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="16dp" />
+
+        <!-- SMS Send Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Envoyer un SMS"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Phone Number Input -->
+        <EditText
+            android:id="@+id/phoneNumberInput"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Numéro de téléphone"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:drawableStart="@android:drawable/ic_dialog_dialer"
+            android:drawablePadding="8dp"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edittext_background" />
+
+        <!-- Message Input -->
+        <EditText
+            android:id="@+id/messageInput"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Message"
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
+            android:padding="12dp"
+            android:drawableStart="@android:drawable/ic_dialog_info"
+            android:drawablePadding="8dp"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edittext_background" />
+
+        <!-- Send and Refresh Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:spacing="12dp">
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="Envoyer"
+                android:textColor="@android:color/white"
+                android:background="@android:color/holo_green_dark"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/refreshButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="Actualiser"
+                android:textColor="@android:color/white"
+                android:background="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!-- Status and Counts -->
+        <TextView
+            android:id="@+id/countTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total: 0 | Reçus: 0 | Envoyés: 0"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@android:color/holo_orange_dark"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/darker_gray" />
+
+        <!-- Status Messages -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Messages"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/statusTextView"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="En attente..."
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:padding="8dp"
+            android:background="@color/light_gray"
+            android:layout_marginBottom="16dp"
+            android:scrollbars="vertical" />
+
+        <!-- SMS List Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Historique des SMS"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- SMS List -->
+        <ListView
+            android:id="@+id/smsListView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:dividerHeight="8dp"
+            android:layout_marginBottom="16dp"
+            tools:listitem="@android:layout/simple_list_item_2" />
+
+    </LinearLayout>
+
+</ScrollView>

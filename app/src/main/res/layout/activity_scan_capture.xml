@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Vue caméra ZXing (plein écran) -->
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/zxing_barcode_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:zxing_preview_scaling_strategy="centerCrop"
+        app:zxing_use_texture_view="false" />
+
+    <!-- Overlay haut : numéro d'étape, points et description -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="36dp"
+        android:paddingBottom="20dp"
+        android:paddingHorizontal="24dp"
+        android:background="#DD000000">
+
+        <!-- Points de progression -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/scanStepDot1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:text="1"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:background="@drawable/step_dot_active" />
+
+            <View
+                android:layout_width="36dp"
+                android:layout_height="2dp"
+                android:background="#44FFFFFF" />
+
+            <TextView
+                android:id="@+id/scanStepDot2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:text="2"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:background="@drawable/step_dot_inactive" />
+
+            <View
+                android:layout_width="36dp"
+                android:layout_height="2dp"
+                android:background="#44FFFFFF" />
+
+            <TextView
+                android:id="@+id/scanStepDot3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:text="3"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:background="@drawable/step_dot_inactive" />
+
+        </LinearLayout>
+
+        <!-- Libellé d'étape -->
+        <TextView
+            android:id="@+id/scanStepLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Étape 1 sur 3"
+            android:textSize="11sp"
+            android:textColor="#88FFFFFF"
+            android:letterSpacing="0.06"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Titre de l'étape -->
+        <TextView
+            android:id="@+id/scanStepTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONFIGURATION DE L'UNITÉ"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#00D4FF"
+            android:gravity="center"
+            android:letterSpacing="0.05" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Notification icon for SentryLink.
+    Android requires notification icons to be flat white (#FFFFFF) on transparent background.
+    The system tints the icon automatically based on context.
+    Based on SentryLink brand: military shield + secure signal.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Shield outline -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,1L3,5v6c0,5.55 3.84,10.74 9,12 5.16,-1.26 9,-6.45 9,-12V5L12,1z
+                          M12,3.18l7,3.11V11c0,4.52 -3.02,8.79 -7,10.09
+                          C8.02,19.79 5,15.52 5,11V6.29L12,3.18z" />
+
+    <!-- Signal / transmission waves (center of shield) -->
+    <!-- Left outer arc -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M8.23,10.6C8.08,11.07 8,11.53 8,12c0,0.47 0.08,0.93 0.23,1.4
+                          L6.7,14.17C6.25,13.5 6,12.77 6,12s0.25,-1.5 0.7,-2.17L8.23,10.6z" />
+    <!-- Right outer arc -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M15.77,10.6l1.53,-0.77C17.75,10.5 18,11.23 18,12s-0.25,1.5 -0.7,2.17
+                          L15.77,13.4C15.92,12.93 16,12.47 16,12c0,-0.47 -0.08,-0.93 -0.23,-1.4z" />
+    <!-- Left inner arc -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M9.76,11.3C9.6,11.52 9.5,11.75 9.5,12s0.1,0.48 0.26,0.7
+                          L8.5,13.5C8.19,13.07 8,12.55 8,12s0.19,-1.07 0.5,-1.5L9.76,11.3z" />
+    <!-- Right inner arc -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14.24,11.3l1.26,-0.8C15.81,10.93 16,11.45 16,12s-0.19,1.07 -0.5,1.5
+                          L14.24,12.7C14.4,12.48 14.5,12.25 14.5,12s-0.1,-0.48 -0.26,-0.7z" />
+    <!-- Center dot -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,11a1,1 0,1,0 0,2 1,1 0,1,0 0,-2z" />
+</vector>

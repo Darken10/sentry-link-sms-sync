@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_gray">#FFD3D3D3</color>
+
+    <!-- Thème SentryLink - Palette du logo (bleu marine + cyan) -->
+    <color name="primary">#0F2535</color>
+    <color name="primary_dark">#0A1929</color>
+    <color name="primary_variant">#163347</color>
+    <color name="accent">#00D4FF</color>
+    <color name="accent_dark">#00A8CC</color>
+    <color name="surface">#102030</color>
+    <color name="surface_light">#1A3045</color>
+    <color name="on_primary">#E0F7FA</color>
+    <color name="on_surface">#80DEEA</color>
+    <color name="text_primary">#E0F7FA</color>
+    <color name="text_secondary">#80DEEA</color>
+
+    <!-- Cartes -->
+    <color name="card_messaging">#0D2137</color>
+    <color name="card_location">#0D2E2A</color>
+    <color name="card_sos">#3E0A0A</color>
+    <color name="card_settings">#152535</color>
+
+    <!-- SOS -->
+    <color name="sos_red">#FF3B3B</color>
+    <color name="sos_red_dark">#CC2A2A</color>
+
+    <!-- Statuts -->
+    <color name="status_sent">#00D4FF</color>
+    <color name="status_pending">#F39C12</color>
+    <color name="status_failed">#FF3B3B</color>
+    <color name="status_received">#00A8CC</color>
+
+    <color name="divider">#1E3A50</color>
+
+    <!-- Bulles de chat -->
+    <color name="bubble_sent">#004A62</color>
+    <color name="bubble_received">#162E42</color>
+</resources>
+

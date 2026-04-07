@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_dark">
+
+    <!-- === VUE WIZARD (étapes 1, 2, 3) === -->
+    <LinearLayout
+        android:id="@+id/viewWizard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- HAUT : Numéro, points et titre de l'étape -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp"
+            android:paddingTop="40dp"
+            android:background="#0DFFFFFF">
+
+            <!-- Points de progression -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="14dp">
+
+                <TextView
+                    android:id="@+id/stepDot1"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:text="1"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@drawable/step_dot_active" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="2dp"
+                    android:background="#44FFFFFF" />
+
+                <TextView
+                    android:id="@+id/stepDot2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:text="2"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@drawable/step_dot_inactive" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="2dp"
+                    android:background="#44FFFFFF" />
+
+                <TextView
+                    android:id="@+id/stepDot3"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:text="3"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@drawable/step_dot_inactive" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvStepLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Étape 1 sur 3"
+                android:textSize="12sp"
+                android:textColor="#88FFFFFF"
+                android:letterSpacing="0.06"
+                android:layout_marginBottom="6dp" />
+
+            <TextView
+                android:id="@+id/tvStepTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CONFIGURATION DE L'UNITÉ"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="#00D4FF"
+                android:letterSpacing="0.05" />
+
+        </LinearLayout>
+
+        <!-- CENTRE : Logo, nom et description de l'étape -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="28dp">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:src="@mipmap/ic_launcher"
+                android:contentDescription="Logo SentryLink"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SentryLink"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="32dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnScan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Scanner le QR code"
+                android:textSize="15sp"
+                android:paddingVertical="14dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- === VUE CHARGEMENT (appel API en cours) === -->
+    <ScrollView
+        android:id="@+id/viewLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:minHeight="400dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CONFIGURATION"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#00D4FF"
+                android:letterSpacing="0.12"
+                android:layout_marginBottom="6dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Initialisation d'un canal sécurisée…"
+                android:textSize="13sp"
+                android:textColor="#88FFFFFF"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Conteneur des étapes -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#1AFFFFFF"
+                android:padding="20dp"
+                android:layout_marginBottom="20dp">
+
+                <!-- Étape 1 : Vérification des clés personnelles -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <FrameLayout
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp">
+
+                        <ProgressBar
+                            android:id="@+id/pbAuthStep1"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep1Icon"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:text="○"
+                            android:textSize="20sp"
+                            android:textColor="#44FFFFFF"
+                            android:gravity="center"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Initialisation sécurisée"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#DDDDDD" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep1Status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="En attente…"
+                            android:textSize="12sp"
+                            android:textColor="#88FFFFFF" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Séparateur -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#22FFFFFF"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="48dp" />
+
+                <!-- Étape 2 : Vérification des clés communes -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <FrameLayout
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp">
+
+                        <ProgressBar
+                            android:id="@+id/pbAuthStep2"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep2Icon"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:text="○"
+                            android:textSize="20sp"
+                            android:textColor="#44FFFFFF"
+                            android:gravity="center"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Authentification"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#DDDDDD" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep2Status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="En attente…"
+                            android:textSize="12sp"
+                            android:textColor="#88FFFFFF" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Séparateur -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#22FFFFFF"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="48dp" />
+
+                <!-- Étape 3 : Établissement du canal sécurisé -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <FrameLayout
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp">
+
+                        <ProgressBar
+                            android:id="@+id/pbAuthStep3"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep3Icon"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:text="○"
+                            android:textSize="20sp"
+                            android:textColor="#44FFFFFF"
+                            android:gravity="center"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Établissement du canal sécurisé"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#DDDDDD" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep3Status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="En attente…"
+                            android:textSize="12sp"
+                            android:textColor="#88FFFFFF" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Séparateur -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#22FFFFFF"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="48dp" />
+
+                <!-- Étape 4 : Établissement du canal sécurisé -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <FrameLayout
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp">
+
+                        <ProgressBar
+                            android:id="@+id/pbAuthStep4"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep4Icon"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:text="○"
+                            android:textSize="20sp"
+                            android:textColor="#44FFFFFF"
+                            android:gravity="center"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Modules cryptographiques"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#DDDDDD" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep4Status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="En attente…"
+                            android:textSize="12sp"
+                            android:textColor="#88FFFFFF" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Séparateur -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#22FFFFFF"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="48dp" />
+
+                <!-- Étape 5 : Récupération des unités -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <FrameLayout
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp">
+
+                        <ProgressBar
+                            android:id="@+id/pbAuthStep5"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep5Icon"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:text="○"
+                            android:textSize="20sp"
+                            android:textColor="#44FFFFFF"
+                            android:gravity="center"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Récupération des unités"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#DDDDDD" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep5Status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="En attente…"
+                            android:textSize="12sp"
+                            android:textColor="#88FFFFFF" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Séparateur -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#22FFFFFF"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="48dp" />
+
+                <!-- Étape 6 : Finalisation du protocole de communication -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <FrameLayout
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp">
+
+                        <ProgressBar
+                            android:id="@+id/pbAuthStep6"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep6Icon"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:text="○"
+                            android:textSize="20sp"
+                            android:textColor="#44FFFFFF"
+                            android:gravity="center"
+                            android:visibility="visible" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Finalisation du protocole"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#DDDDDD" />
+
+                        <TextView
+                            android:id="@+id/tvAuthStep6Status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="En attente…"
+                            android:textSize="12sp"
+                            android:textColor="#88FFFFFF" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Barre de progression globale -->
+            <ProgressBar
+                android:id="@+id/pbAuthOverall"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#00D4FF"
+                android:progressBackgroundTint="#22FFFFFF"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Section résultat (succès / échec) -->
+            <LinearLayout
+                android:id="@+id/viewAuthResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="20dp"
+                android:background="#1AFFFFFF"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvAuthResultIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40sp"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:id="@+id/tvAuthResultMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.4"
+                    android:layout_marginBottom="16dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAuthRetry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recommencer"
+                    android:textSize="14sp"
+                    android:paddingHorizontal="28dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- === VUE PAS D'INTERNET === -->
+    <LinearLayout
+        android:id="@+id/viewNoInternet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⚠"
+            android:textSize="48sp"
+            android:textColor="#FF9800"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connexion Internet requise"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="L'authentification nécessite une connexion Internet active. Vérifiez votre réseau puis réessayez."
+            android:textSize="14sp"
+            android:textColor="#CCCCCC"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.5"
+            android:layout_marginBottom="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Réessayer"
+            android:textSize="15sp"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="12dp" />
+
+    </LinearLayout>
+
+</FrameLayout>
