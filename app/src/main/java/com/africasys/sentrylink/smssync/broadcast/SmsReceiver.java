@@ -12,6 +12,7 @@ import com.africasys.sentrylink.smssync.crypto.CryptoManager;
 import com.africasys.sentrylink.smssync.dtos.SMSDecryptedDTO;
 import com.africasys.sentrylink.smssync.enums.MessageType;
 import com.africasys.sentrylink.smssync.models.SMSMessage;
+import com.africasys.sentrylink.smssync.network.WebhookRelay;
 import com.africasys.sentrylink.smssync.repository.ConfigRepository;
 import com.africasys.sentrylink.smssync.repository.SMSRepository;
 import com.africasys.sentrylink.smssync.utils.MessageHelpers;
@@ -182,7 +183,11 @@ public class SmsReceiver extends BroadcastReceiver {
             broadcastLocal.putExtra("type", dto.getType().name());
             broadcastLocal.setPackage(context.getPackageName());
             context.sendBroadcast(broadcastLocal);
-            Log.d(TAG, "└── [BROADCAST] NEW_SMS envoyé pour: " + phoneNumber);
+            Log.d(TAG, "│   [BROADCAST] NEW_SMS envoyé pour: " + phoneNumber);
+
+            // Relais Webhook → transmission vers le serveur distant (non-bloquant)
+            WebhookRelay.relay(context, phoneNumber, dto.getMessage(), timestamp, prefix);
+            Log.d(TAG, "└── [WEBHOOK] Relais déclenché pour: " + phoneNumber);
 
         } catch (Exception e) {
             Log.e(TAG, "└── [FATAL] Erreur déchiffrement SMS de: " + phoneNumber, e);

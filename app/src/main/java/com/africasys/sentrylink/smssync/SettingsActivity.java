@@ -2,7 +2,10 @@ package com.africasys.sentrylink.smssync;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -22,6 +25,7 @@ import java.util.Locale;
 public class SettingsActivity extends AppCompatActivity {
 
     private ConfigRepository configRepository;
+    private EditText etWebhookUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,25 @@ public class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         findViewById(R.id.btnLogout).setOnClickListener(v -> confirmLogout());
 
+        etWebhookUrl = findViewById(R.id.etWebhookUrl);
+        String savedUrl = configRepository.getWebhookUrl();
+        if (savedUrl != null) etWebhookUrl.setText(savedUrl);
+
+        findViewById(R.id.btnSaveWebhook).setOnClickListener(v -> saveWebhookUrl());
+
         loadUserProfile();
+    }
+
+    private void saveWebhookUrl() {
+        String url = etWebhookUrl.getText().toString().trim();
+        if (!url.isEmpty() && !url.startsWith("http://") && !url.startsWith("https://")) {
+            Toast.makeText(this, "L'URL doit commencer par http:// ou https://", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        configRepository.setWebhookUrl(url.isEmpty() ? null : url);
+        Toast.makeText(this,
+                url.isEmpty() ? "Webhook désactivé" : "URL webhook enregistrée",
+                Toast.LENGTH_SHORT).show();
     }
 
     private void loadUserProfile() {

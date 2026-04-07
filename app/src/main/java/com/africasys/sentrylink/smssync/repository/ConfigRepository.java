@@ -213,8 +213,21 @@ public class ConfigRepository {
 
     // --- Envoi automatique de localisation ---
 
+    public static final String KEY_WEBHOOK_URL = "webhook_url";
+
     public static final String KEY_PERIODIC_LOC_INTERVAL = "periodic_loc_interval_ms";
     public static final String KEY_PERIODIC_LOC_ENABLED = "periodic_loc_enabled";
+
+    // --- URL du Webhook de relais ---
+
+    public void setWebhookUrl(String url) {
+        prefs.edit().putString(KEY_WEBHOOK_URL, url).apply();
+    }
+
+    /** Retourne l'URL du webhook de relais, ou null si non configurée. */
+    public String getWebhookUrl() {
+        return prefs.getString(KEY_WEBHOOK_URL, null);
+    }
 
     public void setPeriodicLocInterval(long intervalMs) {
         prefs.edit().putLong(KEY_PERIODIC_LOC_INTERVAL, intervalMs).apply();
