@@ -2,10 +2,7 @@ package com.africasys.sentrylink;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -17,8 +14,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.africasys.sentrylink.models.AuthenticatedUser;
 import com.africasys.sentrylink.repository.ConfigRepository;
 import com.africasys.sentrylink.repository.UserRepository;
-import com.africasys.sentrylink.service.ContactService;
-import com.google.android.material.button.MaterialButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,10 +21,7 @@ import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private static final String TAG = "SL-SettingsActivity";
-
     private ConfigRepository configRepository;
-    private EditText inputPeriodicLocInterval;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +36,11 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         configRepository = ConfigRepository.getInstance(this);
-        inputPeriodicLocInterval = findViewById(R.id.inputPeriodicLocInterval);
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-        ((MaterialButton) findViewById(R.id.btnSave)).setOnClickListener(v -> saveSettings());
-        ((MaterialButton) findViewById(R.id.btnSyncContacts)).setOnClickListener(v -> syncContacts());
-        ((MaterialButton) findViewById(R.id.btnLogout)).setOnClickListener(v -> confirmLogout());
+        findViewById(R.id.btnLogout).setOnClickListener(v -> confirmLogout());
 
         loadUserProfile();
-        loadSettings();
     }
 
     private void loadUserProfile() {
@@ -77,32 +65,6 @@ public class SettingsActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.tvProfileCreatedAt)).setText(date);
     }
 
-    private void loadSettings() {
-        // Intervalle envoi auto LOC — affiché en minutes
-        long intervalMs = configRepository.getPeriodicLocInterval();
-        long minutes = intervalMs / 60000;
-        inputPeriodicLocInterval.setText(String.valueOf(minutes));
-    }
-
-    private void saveSettings() {
-        String intervalStr = inputPeriodicLocInterval.getText().toString().trim();
-        if (!intervalStr.isEmpty()) {
-            try {
-                long minutes = Long.parseLong(intervalStr);
-                if (minutes < 1) {
-                    Toast.makeText(this, "L'intervalle minimum est 1 minute", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                configRepository.setPeriodicLocInterval(minutes * 60000L);
-                Log.i(TAG, "Intervalle localisation auto sauvegardé : " + minutes + " min");
-            } catch (NumberFormatException e) {
-                Toast.makeText(this, "Valeur d'intervalle invalide", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
-        Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT).show();
-    }
-
     private void confirmLogout() {
         new AlertDialog.Builder(this)
                 .setTitle("Déconnexion")
@@ -119,31 +81,5 @@ public class SettingsActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
-
-    private void syncContacts() {
-        Toast.makeText(this, "Synchronisation en cours...", Toast.LENGTH_SHORT).show();
-        MaterialButton btnSync = findViewById(R.id.btnSyncContacts);
-        btnSync.setEnabled(false);
-
-        ContactService.getInstance(this).syncContacts(new ContactService.Callback<Integer>() {
-            @Override
-            public void onSuccess(Integer count) {
-                runOnUiThread(() -> {
-                    btnSync.setEnabled(true);
-                    String message = count + " contact(s) synchronisé(s)";
-                    Toast.makeText(SettingsActivity.this, message, Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, message);
-                });
-            }
-
-            @Override
-            public void onError(String message, Throwable cause) {
-                runOnUiThread(() -> {
-                    btnSync.setEnabled(true);
-                    Toast.makeText(SettingsActivity.this, "Erreur sync: " + message, Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "Sync error: " + message, cause);
-                });
-            }
-        });
-    }
 }
+
