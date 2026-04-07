@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">SentryLink</string>
+    <string name="app_name">Sentry Link SMS Sync</string>
 
     <!-- Home -->
-    <string name="home_title">SENTRY LINK</string>
-    <string name="home_subtitle">Communication Sécurisée</string>
+    <string name="home_title">SMS SYNC</string>
+    <string name="home_subtitle">Synchronisation sécurisée</string>
     <string name="menu_messaging">Messagerie</string>
     <string name="menu_location">Localisation</string>
     <string name="menu_sos">SOS</string>
@@ -12,6 +12,21 @@
     <string name="menu_location_desc">Position GPS / GSM</string>
     <string name="menu_sos_desc">Alerte d\'urgence</string>
     <string name="menu_settings_desc">Configuration</string>
+
+    <!-- Home SMS Sync -->
+    <string name="menu_sms_log">Messages SMS</string>
+    <string name="menu_sms_log_desc">Historique des SMS interceptés</string>
+    <string name="home_service_running">● Service actif — Surveillance en cours</string>
+    <string name="home_service_stopped">● Service arrêté</string>
+    <string name="home_stat_total_label">Total SMS interceptés</string>
+    <string name="home_stat_today_label">Aujourd\'hui</string>
+
+    <!-- SMS Log -->
+    <string name="sms_log_title">Messages SMS</string>
+    <string name="sms_log_empty_title">Aucun SMS intercepté</string>
+    <string name="sms_log_empty_desc">Le service surveille les SMS entrants. Ils apparaîtront ici dès réception.</string>
+    <string name="sms_type_received">REÇU</string>
+    <string name="sms_type_sent">ENVOYÉ</string>
 
     <!-- Contacts / Conversations -->
     <string name="contacts_title">Conversations</string>
