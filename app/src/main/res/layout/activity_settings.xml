@@ -197,6 +197,158 @@
             </com.google.android.material.card.MaterialCardView>
 
             <!-- ══════════════════════════════════ -->
+            <!-- Section : PASSERELLE HTTP SMS      -->
+            <!-- ══════════════════════════════════ -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PASSERELLE HTTP SMS"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp"
+                android:textAllCaps="true"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="6dp"
+                android:layout_marginStart="4dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Adresse d'accès -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adresse d'accès depuis le PC"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:id="@+id/tvGatewayAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="—"
+                        android:textColor="@color/accent"
+                        android:textSize="14sp"
+                        android:fontFamily="monospace"
+                        android:paddingVertical="4dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Token API -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Token d'authentification (X-Api-Token)"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="2dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:id="@+id/tvApiToken"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="—"
+                            android:textColor="@color/text_primary"
+                            android:textSize="13sp"
+                            android:fontFamily="monospace"
+                            android:paddingVertical="4dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCopyToken"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:text="Copier"
+                            android:textSize="12sp"
+                            app:strokeColor="@color/accent"
+                            android:textColor="@color/accent"
+                            android:layout_marginStart="8dp" />
+                    </LinearLayout>
+
+                    <!-- Port -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Port du serveur"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="2dp" />
+
+                    <EditText
+                        android:id="@+id/etServerPort"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="8080"
+                        android:inputType="number"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_secondary"
+                        android:fontFamily="monospace"
+                        android:textSize="14sp"
+                        android:background="@drawable/input_background"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="10dp"
+                        android:layout_marginBottom="16dp"
+                        android:singleLine="true"
+                        android:maxLines="1" />
+
+                    <!-- Séparateur -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/primary_variant"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Bouton Start/Stop -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnToggleGateway"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:text="Démarrer la passerelle"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/accent"
+                        app:cornerRadius="10dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Bouton Régénérer token -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRegenToken"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="Régénérer le token"
+                        android:textSize="13sp"
+                        app:strokeColor="@color/text_secondary"
+                        android:textColor="@color/text_secondary" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ══════════════════════════════════ -->
             <!-- Section : RELAIS WEBHOOK           -->
             <!-- ══════════════════════════════════ -->
             <TextView

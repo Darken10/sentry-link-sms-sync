@@ -215,6 +215,11 @@ public class ConfigRepository {
 
     public static final String KEY_WEBHOOK_URL = "webhook_url";
 
+    // --- Passerelle HTTP SMS ---
+    public static final String KEY_HTTP_API_TOKEN   = "http_api_token";
+    public static final String KEY_HTTP_SERVER_PORT = "http_server_port";
+    public static final String KEY_HTTP_GW_ENABLED  = "http_gw_enabled";
+
     public static final String KEY_PERIODIC_LOC_INTERVAL = "periodic_loc_interval_ms";
     public static final String KEY_PERIODIC_LOC_ENABLED = "periodic_loc_enabled";
 
@@ -227,6 +232,35 @@ public class ConfigRepository {
     /** Retourne l'URL du webhook de relais, ou null si non configurée. */
     public String getWebhookUrl() {
         return prefs.getString(KEY_WEBHOOK_URL, null);
+    }
+
+    // --- Passerelle HTTP SMS ---
+
+    public void setHttpApiToken(String token) {
+        prefs.edit().putString(KEY_HTTP_API_TOKEN, token).apply();
+    }
+
+    /** Retourne le token API, ou null si non encore généré. */
+    public String getHttpApiToken() {
+        return prefs.getString(KEY_HTTP_API_TOKEN, null);
+    }
+
+    public void setHttpServerPort(int port) {
+        prefs.edit().putInt(KEY_HTTP_SERVER_PORT, port).apply();
+    }
+
+    /** Retourne le port du serveur HTTP (défaut : 8080). */
+    public int getHttpServerPort() {
+        return prefs.getInt(KEY_HTTP_SERVER_PORT, 8080);
+    }
+
+    public void setHttpGatewayEnabled(boolean enabled) {
+        prefs.edit().putBoolean(KEY_HTTP_GW_ENABLED, enabled).apply();
+    }
+
+    /** Indique si la passerelle HTTP doit démarrer au boot. */
+    public boolean isHttpGatewayEnabled() {
+        return prefs.getBoolean(KEY_HTTP_GW_ENABLED, false);
     }
 
     public void setPeriodicLocInterval(long intervalMs) {

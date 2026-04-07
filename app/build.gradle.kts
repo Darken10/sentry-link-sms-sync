@@ -71,6 +71,9 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
 
+    // HTTP Server - NanoHTTPD (mini-serveur HTTP embarqué, zéro dépendance)
+    implementation("org.nanohttpd:nanohttpd:2.3.1")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
