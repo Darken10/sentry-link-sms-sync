@@ -197,93 +197,6 @@
             </com.google.android.material.card.MaterialCardView>
 
             <!-- ══════════════════════════════════ -->
-            <!-- Section : LOCALISATION             -->
-            <!-- ══════════════════════════════════ -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="LOCALISATION"
-                android:textColor="@color/text_secondary"
-                android:textSize="11sp"
-                android:textAllCaps="true"
-                android:letterSpacing="0.1"
-                android:layout_marginBottom="6dp"
-                android:layout_marginStart="4dp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/surface"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                android:layout_marginBottom="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <!-- Titre section -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="12dp">
-
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:src="@drawable/ic_location"
-                            app:tint="@color/accent"
-                            android:scaleType="fitCenter"
-                            android:layout_marginEnd="8dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Envoi automatique de position"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <!-- Label intervalle -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Intervalle d'envoi (minutes)"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp"
-                        android:layout_marginBottom="6dp" />
-
-                    <!-- Champ intervalle -->
-                    <EditText
-                        android:id="@+id/inputPeriodicLocInterval"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:hint="60"
-                        android:textColorHint="@color/text_secondary"
-                        android:textColor="@color/text_primary"
-                        android:inputType="number"
-                        android:padding="12dp"
-                        android:textSize="15sp"
-                        android:background="@drawable/input_background" />
-
-                    <!-- Description -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Position envoyée automatiquement à la tour de contrôle. Activez l'envoi depuis la page Localisation."
-                        android:textColor="@color/text_secondary"
-                        android:textSize="11sp"
-                        android:layout_marginTop="6dp"
-                        android:lineSpacingExtra="2dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- ══════════════════════════════════ -->
             <!-- Section : COMPTE                   -->
             <!-- ══════════════════════════════════ -->
             <TextView
@@ -311,20 +224,6 @@
                     android:orientation="vertical"
                     android:padding="12dp">
 
-                    <!-- Synchroniser les contacts -->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnSyncContacts"
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:text="Synchroniser les contacts"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        app:backgroundTint="@color/accent_dark"
-                        app:cornerRadius="10dp"
-                        app:icon="@drawable/ic_sync"
-                        app:iconTint="@color/white"
-                        android:layout_marginBottom="8dp" />
-
                     <!-- Déconnexion -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnLogout"
@@ -339,19 +238,6 @@
                         app:iconTint="@color/white" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
-            <!-- Bouton Sauvegarder -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="@string/settings_save"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                app:backgroundTint="@color/accent"
-                app:cornerRadius="12dp"
-                android:layout_marginBottom="12dp" />
 
             <!-- Footer -->
             <TextView

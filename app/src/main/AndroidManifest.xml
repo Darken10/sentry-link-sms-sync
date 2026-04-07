@@ -65,30 +65,9 @@
             </intent-filter>
         </activity>
 
-        <!-- Contacts / Conversations SentryLink -->
+        <!-- SMS Log — historique des messages interceptés -->
         <activity
-            android:name=".ContactsActivity"
-            android:exported="false" />
-
-        <!-- Sélection d'un contact pour une nouvelle conversation -->
-        <activity
-            android:name=".NewConversationActivity"
-            android:exported="false" />
-
-        <!-- Messagerie sécurisée -->
-        <activity
-            android:name=".MessagingActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-
-        <!-- Localisation -->
-        <activity
-            android:name=".LocationActivity"
-            android:exported="false" />
-
-        <!-- SOS -->
-        <activity
-            android:name=".SosActivity"
+            android:name=".SmsLogActivity"
             android:exported="false" />
 
         <!-- Paramètres -->
