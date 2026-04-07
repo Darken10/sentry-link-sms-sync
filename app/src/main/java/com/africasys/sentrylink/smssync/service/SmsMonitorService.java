@@ -21,6 +21,7 @@ import com.africasys.sentrylink.smssync.HomeActivity;
 import com.africasys.sentrylink.smssync.R;
 import com.africasys.sentrylink.smssync.broadcast.SmsReceiver;
 import com.africasys.sentrylink.smssync.config.MessageConfig;
+import com.africasys.sentrylink.smssync.network.WebhookRelay;
 import com.africasys.sentrylink.smssync.crypto.CryptoManager;
 import com.africasys.sentrylink.smssync.dtos.SMSDecryptedDTO;
 import com.africasys.sentrylink.smssync.enums.MessageType;
@@ -328,6 +329,9 @@ public class SmsMonitorService extends Service {
                     imported++;
                     Log.i(TAG, "  └── ✓ IMPORTÉ (id=" + insertedId + ") de: " + address
                             + " | \"" + dto.getMessage() + "\"");
+
+                    // Relais Webhook — premier import uniquement (anti-doublon déjà appliqué)
+                    WebhookRelay.relay(SmsMonitorService.this, address, dto.getMessage(), date, prefix);
 
                 } catch (Exception e) {
                     Log.e(TAG, "  └── ✗ Erreur inattendue après déchiffrement pour SMS de " + address, e);
