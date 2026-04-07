@@ -33,13 +33,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SentryLink">
 
-        <!-- Splash Screen (désactivé temporairement — réactiver quand le problème de BD sera résolu) -->
-        <activity
-            android:name=".SplashActivity"
-            android:exported="false"
-            android:theme="@style/Theme.SentryLink.Splash"
-            android:noHistory="true" />
-
         <!-- Authentification par QR code (point d'entrée si non authentifié) -->
         <activity
             android:name=".QrScanActivity"
@@ -73,11 +66,6 @@
         <!-- Paramètres -->
         <activity
             android:name=".SettingsActivity"
-            android:exported="false" />
-
-        <!-- Ancien MainActivity conservé pour compatibilité -->
-        <activity
-            android:name=".MainActivity"
             android:exported="false" />
 
         <!-- BroadcastReceiver principal pour les SMS entrants (chiffrement) -->

@@ -85,7 +85,7 @@
                 android:id="@+id/tvStepTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CONFIGURATION DE L'UNITÉ"
+                android:text="CONFIGURATION DE L'APPAREIL"
                 android:textSize="19sp"
                 android:textStyle="bold"
                 android:textColor="#00D4FF"
@@ -106,13 +106,13 @@
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:src="@mipmap/ic_launcher"
-                android:contentDescription="Logo SentryLink"
+                android:contentDescription="Logo SMS Sync"
                 android:layout_marginBottom="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SentryLink"
+                android:text="SMS Sync"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"

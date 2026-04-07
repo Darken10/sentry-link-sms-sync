@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.africasys.sentrylink"
+    namespace = "com.africasys.sentrylink.smssync"
     compileSdk = 36
 
     defaultConfig {
@@ -14,6 +14,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testNamespace = "com.africasys.sentrylink.smssync.test"
     }
 
     buildTypes {
