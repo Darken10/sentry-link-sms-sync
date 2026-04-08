@@ -121,7 +121,7 @@ public class SettingsActivity extends AppCompatActivity {
         String ip = HttpGatewayService.getWifiIpAddress(this);
 
         if (running) {
-            tvGatewayAddress.setText("http://" + ip + ":" + port + "/send-sms");
+            tvGatewayAddress.setText("http://" + ip + ":" + port /*+ "/send-sms"*/);
             ((com.google.android.material.button.MaterialButton)
                     findViewById(R.id.btnToggleGateway))
                     .setText("Arrêter la passerelle");
@@ -136,7 +136,13 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void refreshTokenDisplay() {
         String token = configRepository.getHttpApiToken();
-        tvApiToken.setText(token != null ? token : "—  (générée au premier démarrage)");
+        if (token != null) {
+            // Mask the token with dots
+            String maskedToken = "•".repeat(token.length());
+            tvApiToken.setText(maskedToken);
+        } else {
+            tvApiToken.setText("—  (générée au premier démarrage)");
+        }
     }
 
     private void toggleGateway() {
