@@ -79,6 +79,7 @@ public class SmsReceiver extends BroadcastReceiver {
                     repository.saveSMS(sms);
                     Log.d(TAG, "Message SentryLink reçu de: " + expediteur);
 
+
                     // Notifier l'UI
                     Intent broadcastLocal = new Intent("com.africasys.sentrylink.NEW_SMS");
                     broadcastLocal.putExtra("expediteur", expediteur);

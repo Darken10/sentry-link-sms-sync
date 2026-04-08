@@ -1,6 +1,8 @@
 package com.africasys.sentrylink.smssync.network;
 
 import com.africasys.sentrylink.smssync.config.ApiConfig;
+import com.africasys.sentrylink.smssync.dtos.AlertRequestDTO;
+import com.africasys.sentrylink.smssync.dtos.AlertResponseDTO;
 import com.africasys.sentrylink.smssync.dtos.ContactAuthResponse;
 import com.africasys.sentrylink.smssync.dtos.ContactDto;
 import com.africasys.sentrylink.smssync.dtos.DefaultKeyResponse;
@@ -24,7 +26,6 @@ import java.util.concurrent.TimeUnit;
 public interface SentryLinkApi {
 
 
-
     /**
      * Authentification par cles public
      * Le token est ajouté automatiquement via l'interceptor ApiClient.
@@ -35,75 +36,20 @@ public interface SentryLinkApi {
     );
 
     /**
-     * Envoie un message chiffré.
-     */
-    @POST("/api/v1/messages/send")
-    Call<Map<String, Object>> sendMessage(
-            @Header("X-SentryLink-Signature") String signature,
-            @Header("X-SentryLink-Device") String deviceCallsign,
-            @Body Map<String, String> encryptedPayload
-    );
-
-    /**
-     * Rapporte une position.
-     */
-    @POST("/api/v1/location/report")
-    Call<Map<String, Object>> reportLocation(
-            @Header("X-SentryLink-Signature") String signature,
-            @Header("X-SentryLink-Device") String deviceCallsign,
-            @Body Map<String, String> encryptedPayload
-    );
-
-    /**
-     * Envoie une alerte SOS.
-     */
-    @POST("/api/v1/sos/alert")
-    Call<Map<String, Object>> sendSosAlert(
-            @Header("X-SentryLink-Signature") String signature,
-            @Header("X-SentryLink-Device") String deviceCallsign,
-            @Body Map<String, String> encryptedPayload
-    );
-
-    /**
-     * Récupère les messages en attente pour cet appareil.
-     */
-    @POST("/api/v1/messages/poll")
-    Call<Map<String, Object>> pollMessages(
-            @Header("X-SentryLink-Signature") String signature,
-            @Header("X-SentryLink-Device") String deviceCallsign,
-            @Body Map<String, String> request
-    );
-
-    /**
      * Retourne la liste de tous les contacts avec leur clé publique active.
      *
-     * @param authToken credential SHA-512 (header X-Contact-Auth)
+     * @param authToken credential
      */
     @GET("/api/v1/contacts")
     Call<List<ContactDto>> getContacts(
             @Header(ApiConfig.CONTACT_AUTH_HEADER_KEY) String authToken
     );
 
-    /**
-     * Retourne la clé privée RSA-4096 du contact appelant, chiffrée en AES-256-GCM.
-     * Réponse 204 si aucune clé active n'existe pour ce contact.
-     *
-     * @param authToken credential SHA-512 (header X-Contact-Auth)
-     */
-    @GET("/api/v1/my-private-key")
-    Call<PrivateKeyResponse> getMyPrivateKey(
-            @Header(ApiConfig.CONTACT_AUTH_HEADER_KEY) String authToken
+    @POST("/api/v1/alert")
+    Call<AlertResponseDTO> sendAlert(
+            @Header(ApiConfig.CONTACT_AUTH_HEADER_KEY) String authToken,
+            @Body AlertRequestDTO body
     );
 
-    /**
-     * Retourne la clé publique RSA-4096 par défaut.
-     * Utilisée pour chiffrer les messages destinés à un numéro hors répertoire.
-     *
-     * @param authToken credential SHA-512 (header X-Contact-Auth)
-     */
-    @GET("/api/v1/default-public-key")
-    Call<DefaultKeyResponse> getDefaultPublicKey(
-            @Header(ApiConfig.CONTACT_AUTH_HEADER_KEY) String authToken
-    );
 }
 
