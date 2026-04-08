@@ -10,11 +10,9 @@ import android.util.Log;
 import com.africasys.sentrylink.smssync.config.MessageConfig;
 import com.africasys.sentrylink.smssync.crypto.CryptoManager;
 import com.africasys.sentrylink.smssync.dtos.SMSDecryptedDTO;
-import com.africasys.sentrylink.smssync.enums.MessageType;
-import com.africasys.sentrylink.smssync.models.SMSMessage;
-import com.africasys.sentrylink.smssync.network.WebhookRelay;
+// ...existing imports...
+import com.africasys.sentrylink.smssync.service.message.MessageProcessor;
 import com.africasys.sentrylink.smssync.repository.ConfigRepository;
-import com.africasys.sentrylink.smssync.repository.SMSRepository;
 import com.africasys.sentrylink.smssync.utils.MessageHelpers;
 
 import java.security.PrivateKey;
@@ -31,7 +29,7 @@ import java.security.PrivateKey;
 public class SmsReceiver extends BroadcastReceiver {
 
     private static final String TAG = "SL-SmsReceiver";
-    private static final int SMS_TYPE_INBOX = 1;
+    // constant SMS_TYPE_INBOX not needed here (handlers will handle storage)
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -162,32 +160,11 @@ public class SmsReceiver extends BroadcastReceiver {
                     + " | msgTimestamp=" + dto.getTimestamp()
                     + " | message=\"" + dto.getMessage() + "\"");
 
-            // Filtre type MSG uniquement
-            if (dto.getType() != MessageType.MSG) {
-                Log.i(TAG, "└── [TYPE] Type " + dto.getType() + " → non stocké dans sms_messages (seul MSG)");
-                return;
-            }
-
-            // Sauvegarde en DB
-            SMSMessage sms = new SMSMessage(phoneNumber, dto.getMessage(), timestamp, SMS_TYPE_INBOX);
-            long insertedId = new SMSRepository(context).saveSMS(sms);
-            Log.i(TAG, "│   [DB] ✓ Message sauvegardé (id=" + insertedId + ")"
-                    + " | de: " + phoneNumber
-                    + " | préfixe: " + prefix
-                    + " | \"" + dto.getMessage() + "\"");
-
-            // Broadcast local → mise à jour de l'UI
-            Intent broadcastLocal = new Intent("com.africasys.sentrylink.NEW_SMS");
-            broadcastLocal.putExtra("expediteur", phoneNumber);
-            broadcastLocal.putExtra("message", dto.getMessage());
-            broadcastLocal.putExtra("type", dto.getType().name());
-            broadcastLocal.setPackage(context.getPackageName());
-            context.sendBroadcast(broadcastLocal);
-            Log.d(TAG, "│   [BROADCAST] NEW_SMS envoyé pour: " + phoneNumber);
-
-            // Relais Webhook → transmission vers le serveur distant (non-bloquant)
-            WebhookRelay.relay(context, phoneNumber, dto.getMessage(), timestamp, prefix);
-            Log.d(TAG, "└── [WEBHOOK] Relais déclenché pour: " + phoneNumber);
+            // Déléguer le traitement du message déchiffré au MessageProcessor
+            // Celui-ci va appeler le handler adapté (MSG, SOS, LOC, ...)
+            Log.d(TAG, "│   [PROCESS] Délégation au MessageProcessor pour type=" + dto.getType());
+            MessageProcessor.getInstance().process(context, phoneNumber, dto, timestamp, prefix);
+            Log.d(TAG, "└── [PROCESS] Délégation effectuée pour: " + phoneNumber);
 
         } catch (Exception e) {
             Log.e(TAG, "└── [FATAL] Erreur déchiffrement SMS de: " + phoneNumber, e);
